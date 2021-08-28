@@ -3,12 +3,16 @@ pipeline {
 
   stages {
     stage('Test') {
-      echo "Test!"
+      step {
+        echo "Test!"
+      }
     }
     stage('Build') {
       steps {
-        def tag = sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
-        echo "${tag}"
+        step {
+          def tag = sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
+          echo "${tag}"
+        }
       }
     }
     stage('Deploy') {
