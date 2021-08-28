@@ -9,8 +9,10 @@ pipeline {
     }
     stage('Build') {
       steps {
+	script {
           def tag = sh(returnStdout: true, script: "git tag --contains").trim()
           echo "${tag}"
+	}
       }
     }
     stage('Deploy') {
