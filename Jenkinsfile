@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    TAG_NAME = sh(returnStdout: true, script: "git tag --contains").trim()
+  }
 
   stages {
     stage('Test') {
