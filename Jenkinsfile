@@ -15,6 +15,10 @@ pipeline {
 	script {
           def tag = sh(returnStdout: true, script: "git tag --contains").trim()
           echo "${tag}"
+          def issue = sh(returnStdout: true, script: "git log -1 --pretty=%B | cut -f2 -d '#'").trim()
+	  echo "Issue ${issue}"
+          def hash = sh(returnStdout: true, script: "git log -1 --format=%H").trim().substring(0,7)
+          echo "Hash ${hash}"
 	}
       }
     }
